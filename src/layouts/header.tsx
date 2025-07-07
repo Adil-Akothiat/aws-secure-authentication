@@ -15,7 +15,7 @@ const Header:React.FC = () => {
     auth.signoutRedirect({
       extraQueryParams: {
         client_id: import.meta.env.VITE_CLIENT_ID,
-        logout_uri: "http://localhost:5173/"
+        logout_uri: import.meta.env.VITE_SIGNOUT_REDIRECT_URI || "http://localhost:5173/"
       }
     });
   };
