@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+
+button {
+    cursor:pointer !important;
+}
+html, body {
+    scroll-behavior: smooth;
+}
