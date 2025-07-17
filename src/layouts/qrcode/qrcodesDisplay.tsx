@@ -4,11 +4,11 @@ import { type QRCodeData } from "./qrcodescanner";
 import { Button, Spinner } from "flowbite-react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { IoMdEye } from "react-icons/io";
 import { HiClock } from "react-icons/hi";
 import CustomModal from "../../components/modal";
 import { formatDate, getTimeAgo } from "../../utilities/dateTime";
 import { FiPlus } from "react-icons/fi";
+import ScanCount from "./scanCount";
 
 interface QrcodeDisplayProps {
   qrCodes: QRCodeData[];
@@ -119,12 +119,7 @@ const QrcodeDisplay: FC<QrcodeDisplayProps> = ({
                         Created: {formatDate(qrCode.createdAt || qrCode.metaData.timestamp)}
                       </span>
                     </div>
-                    {qrCode.scanCount !== undefined && (
-                      <div className="flex items-center justify-center space-x-2">
-                        <IoMdEye className="w-3 h-3 text-blue-500" />
-                        <span className="font-medium">{qrCode.scanCount} scans</span>
-                      </div>
-                    )}
+                    <ScanCount scanCount={Number(qrCode?.scanCount || 0)} id={String(qrCode?.id||"")} />
                   </div>
                 </div>
                 <div className="flex space-x-2 w-full">
