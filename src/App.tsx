@@ -9,6 +9,8 @@ import AuthLoader from './components/loader';
 import PublicOnlyMiddleware from './protectRoute/isAuth';
 import AOS from "aos"
 import "aos/dist/aos.css";
+import QrcodeScanner from './pages/qrcodeScanner';
+import QRCodeRedirect from './pages/qrcodeRedirect';
 
 function App() {
   useEffect(()=>{
@@ -26,7 +28,9 @@ function App() {
         </Route>
         <Route element={<MainProtectMiddleware />}>
           <Route path='/aws-cognito-welcom' element={<Dashboard />} />
+          <Route path="/qrcode-scanner" element={<QrcodeScanner />} />
         </Route>
+        <Route path="/qrcode/:id" element={<QRCodeRedirect />} />
       </Routes>
       <Footer />
       </Suspense>
