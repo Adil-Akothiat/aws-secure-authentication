@@ -2,12 +2,15 @@ import React from "react";
 import banner from "../assets/banner/banner.png";
 import Technologies from "./technologies";
 import { Button } from "flowbite-react";
-import { useAuth } from "react-oidc-context";
+// import { useAuth } from "react-oidc-context";
 
 const IntroSection: React.FC = () => {
-  const auth = useAuth();
+  // const auth = useAuth();
   const signinHandler = () => {
-    auth.signinRedirect();
+    // auth.signinRedirect();
+    alert(
+    "🚧 This project demo uses AWS Authentication, which is currently disabled due to unpaid billing. "
+  );
   };
 
   return (

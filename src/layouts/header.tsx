@@ -9,8 +9,12 @@ const Header: React.FC = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const signinHandler = () => {
-    auth.signinRedirect();
-  };
+    // auth.signinRedirect();
+  alert(
+    "🚧 This project demo uses AWS Authentication, which is currently disabled due to unpaid billing. "
+  );
+};
+
 
   const signoutHandler = () => {
     auth.signoutRedirect({
@@ -19,7 +23,7 @@ const Header: React.FC = () => {
         logout_uri:
           import.meta.env.VITE_SIGNOUT_REDIRECT_URI || "http://localhost:5173/",
       },
-    });
+    })
   };
 
   if (auth.isLoading) return <AuthLoader />;
