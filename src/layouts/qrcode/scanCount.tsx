@@ -3,11 +3,7 @@ import { Button } from "flowbite-react";
 import { useState, type FC } from "react";
 import { IoMdEye } from "react-icons/io";
 import { MdRefresh } from "react-icons/md";
-
-interface ScanCountProps {
-  id: string;
-  scanCount: number;
-}
+import type { ScanCountProps } from '@types/qrcode.ts';
 
 const ScanCount: FC<ScanCountProps> = ({ scanCount, id }) => {
     const [scans, setScans] = useState<number>(scanCount);

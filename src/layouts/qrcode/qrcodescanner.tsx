@@ -1,25 +1,12 @@
 import { useEffect, useState, type FC } from "react";
 import { Button } from "flowbite-react";
-import GenerateQrcode, { type UpdateProps } from "./generateQrcode";
+import GenerateQrcode from "./generateQrcode";
+import type { UpdateProps, QRCodeData } from '@types/qrcode.ts';
 import axios from "axios";
-import { useAuth } from "react-oidc-context";
+import { useAuth } from "@hooks";
 import QrcodeDisplay from "./qrcodesDisplay";
 
-export interface QRCodeData {
-  id: Number;
-  redirectUrl: string;
-  urls: {
-    local: String;
-    prod: String;
-  };
-  userId: string;
-  metaData: {
-    userAgent: string;
-    timestamp: string;
-  };
-  createdAt: string;
-  scanCount?: number;
-}
+// QRCodeData moved to `src/types/qrcode.ts`
 
 const QrcodeGenerator: FC = () => {
   const [qrCodes, setQrCodes] = useState<QRCodeData[]>([]);
@@ -27,8 +14,8 @@ const QrcodeGenerator: FC = () => {
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [showModal, setShowModal] = useState(false);
-  const auth = useAuth();
-  const userId = String(auth?.user?.profile?.sub || "");
+  const { user } = useAuth();
+  const userId = String(user?.sub || "");
   const [lastEvaluatedKey, setLastEvaluatedKey] = useState<any>(0);
   const [updateProps, setUpdateProps] = useState<UpdateProps>({
     wantUpdate: false,

@@ -40,7 +40,7 @@ const IntroSection: React.FC = () => {
             </div>
 
             <div className="flex items-center mt-6 gap-x-4" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
-              <Button color="dark" size="lg" onClick={signinHandler}>
+              <Button color="dark" size="lg" className="px-6" onClick={signinHandler}>
                 Get Started
               </Button>
             </div>

@@ -1,22 +1,9 @@
 import { useEffect, useState, type ChangeEvent, type FC } from "react";
 import { Button } from "flowbite-react";
 import CustomModal from "../../components/modal";
-import { type QRCodeData } from "./qrcodescanner";
+import type { GenerateQrcodeProps } from '@types/qrcode.ts';
+import { useDebounce } from "@hooks";
 
-export interface UpdateProps {
-    wantUpdate?: boolean;
-    item?: QRCodeData;
-    onUpdate: (url:string, id:string)=> void;
-}
-
-interface GenerateQrcodeProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (url: string, userId: string, metaData: object) => void;
-  isGenerating: boolean;
-  userId: string;
-  update?: UpdateProps;
-}
 const GenerateQrcode: FC<GenerateQrcodeProps> = ({
   isOpen,
   onClose,
@@ -27,6 +14,7 @@ const GenerateQrcode: FC<GenerateQrcodeProps> = ({
 }) => {
   const [url, setUrl] = useState<string>(String(update?.item?.redirectUrl || ""));
   const [isValidUrl, setIsValidUrl] = useState(true);
+  const debouncedUrl = useDebounce(url, 300);
 
   useEffect(()=>{
     if(update?.wantUpdate) {
@@ -35,20 +23,24 @@ const GenerateQrcode: FC<GenerateQrcodeProps> = ({
       setUrl('');
     }
   },[update])
-  const setUrlHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
 
-    if (inputValue === "") {
+  // Validate URL when debounced value changes
+  useEffect(() => {
+    if (debouncedUrl === "") {
       setIsValidUrl(true);
     } else if (
       !/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/.test(
-        inputValue
+        debouncedUrl
       )
     ) {
       setIsValidUrl(false);
     } else {
       setIsValidUrl(true);
     }
+  }, [debouncedUrl]);
+
+  const setUrlHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
     setUrl(inputValue);
   };
 

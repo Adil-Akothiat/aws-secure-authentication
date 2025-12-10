@@ -1,13 +1,6 @@
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
-import type { FC, ReactNode } from "react";
-
-export interface CustomModalProps {
-    isOpen: boolean;
-    onClose: ()=> void;
-    header: ReactNode;
-    children: ReactNode;
-    footer: ReactNode
-}
+import type { FC } from "react";
+import type { CustomModalProps } from '@types/ui.ts';
 
 const CustomModal:FC<CustomModalProps> = ({ isOpen, onClose, header, children,  footer }) => {
   return (

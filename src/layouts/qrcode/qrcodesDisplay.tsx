@@ -1,6 +1,6 @@
 import { useState, type FC } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { type QRCodeData } from "./qrcodescanner";
+import type { QRCodeData, QrcodeDisplayProps } from '@types/qrcode.ts';
 import { Button, Spinner } from "flowbite-react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -9,17 +9,6 @@ import CustomModal from "../../components/modal";
 import { formatDate, getTimeAgo } from "../../utilities/dateTime";
 import { FiPlus } from "react-icons/fi";
 import ScanCount from "./scanCount";
-
-interface QrcodeDisplayProps {
-  qrCodes: QRCodeData[];
-  isLoading: Boolean;
-  onEdit?: (qrCode: QRCodeData) => void;
-  onDelete: (id: string) => Promise<void>;
-  viewMore?: ()=> void;
-  lastEvaluatedKey: any;
-  isDeleting: boolean;
-  isViewingMore: boolean;
-}
 
 const QrcodeDisplay: FC<QrcodeDisplayProps> = ({ 
   qrCodes,

@@ -1,5 +1,5 @@
 import type React from "react";
-import type { FeatureProps } from "../data/features";
+import type { FeatureProps } from "@types/features.ts";
 
 const FeatureCard: React.FC<FeatureProps> = ({
   icon,

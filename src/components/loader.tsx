@@ -1,8 +1,5 @@
 import { type FC } from 'react';
-
-interface AuthLoaderProps {
-  text?: string;
-}
+import type { AuthLoaderProps } from '@types/ui.ts';
 
 const AuthLoader:FC<AuthLoaderProps> = ({text="Processing..."}) => {
   return (

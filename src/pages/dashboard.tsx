@@ -1,17 +1,11 @@
 import type React from "react";
 import { useAuth } from "react-oidc-context";
+import { formatDate } from "@utils/formatDate";
+import { truncateString } from "@utils/stringUtils";
 
 const Dashboard: React.FC = () => {
     const auth = useAuth();
     const user = auth?.user;
-
-    const formatDate = (timestamp: number) => {
-        return new Date(timestamp * 1000).toLocaleString();
-    };
-
-    const truncateString = (str: string, maxLength: number = 30) => {
-        return str?.length > maxLength ? str.substring(0, maxLength) + '...' : str;
-    };
 
     return (
         <div className="min-h-screen bg-gray-50 py-8">

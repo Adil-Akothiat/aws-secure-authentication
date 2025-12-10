@@ -4,16 +4,7 @@ import {
   FiShield,
   FiZap,
 } from 'react-icons/fi';
-
-
-export interface FeatureProps {
-    icon: React.ReactElement<React.SVGProps<SVGSVGElement>>,
-    title: string,
-    description: string,
-    bgColor: string,
-    iconBgColor: string,
-    iconTextColor: string,
-}
+import type { FeatureProps } from '@types/features.ts';
 
 export const features: FeatureProps[] =  [
   {
